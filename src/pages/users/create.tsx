@@ -74,14 +74,14 @@ export default function CreateUser() {
                 name="name"
                 label="Nome completo"
                 error={errors.name}
-                {...register}
+                {...register('name')}
               />
               <Input
                 name="email"
                 type="email"
                 label="E-mail"
                 error={errors.email}
-                {...register}
+                {...register('email')}
               />
             </SimpleGrid>
             <SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
@@ -90,14 +90,14 @@ export default function CreateUser() {
                 type="password"
                 label="Senha"
                 error={errors.password}
-                {...register}
+                {...register('password')}
               />
               <Input
                 name="password_confirmation"
                 type="password"
                 label="Confirmação de senha"
                 error={errors.password_confirmation}
-                {...register}
+                {...register('password_confirmation')}
               />
             </SimpleGrid>
           </VStack>
