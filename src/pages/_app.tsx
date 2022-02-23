@@ -1,21 +1,26 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import {AppProps} from 'next/app'
-import { SidebarDrawerProvider } from '../context/SidebarDrawerContext'
-import { makeServer } from '../service/mirage'
-import { theme } from '../styles/theme'
+import { ChakraProvider } from "@chakra-ui/react";
+import { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { SidebarDrawerProvider } from "../context/SidebarDrawerContext";
+import { makeServer } from "../service/mirage";
+import { theme } from "../styles/theme";
 
-if(process.env.NODE_ENV === 'development') {
-  makeServer()
+if (process.env.NODE_ENV === "development") {
+  makeServer();
 }
 
-function MyApp({ Component, pageProps }:AppProps) {
+const queryClient = new QueryClient();
+
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider  theme={theme}>
-      <SidebarDrawerProvider>
-      <Component {...pageProps} />
-      </SidebarDrawerProvider>
-    </ChakraProvider>
-  )
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <SidebarDrawerProvider>
+          <Component {...pageProps} />
+        </SidebarDrawerProvider>
+      </ChakraProvider>
+    </QueryClientProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
