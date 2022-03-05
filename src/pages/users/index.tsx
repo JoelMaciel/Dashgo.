@@ -18,12 +18,12 @@ import {
 import Link from "next/link";
 import { RiAddLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
-import Pagination  from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination";
 import Sidebar from "../../components/Sidebar";
 import { useUsers } from "../../service/hooks/useUsers";
 
 export default function UserList() {
-  const { data, isLoading, isFetching, error } = useUsers()
+  const { data, isLoading, isFetching, error } = useUsers();
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -97,7 +97,11 @@ export default function UserList() {
                   })}
                 </Tbody>
               </Table>
-              <Pagination />
+              <Pagination
+                totalCountOfRegisters={200}
+                currentPage={5}
+                onPageChange={() => {}}
+              />
             </>
           )}
         </Box>
